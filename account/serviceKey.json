@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "danapharm-f7cd4",
+  "private_key_id": "1e8c393e112f49d2d2fc238ee2aa88cfe90b4e2e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDGy4JUhPhyduyS\nHfOJ6R4uXiQMFMFeFgohqCYKvVi7KVGdDeIM1S7D6CjmnA65amyKWzI18P6kXoRO\n4rwBQG38e355Qf1cxEg2wgGju25E/bphQF+ya1eFaiNEGXdChABr0SXsbnGcAfr1\njGp0mq/g9X9lq7FPvyg5MjupAQfrr/+lPqLFEqQ1hNnAT+tU4q2EP9qLLrp7YwvR\n8/SrzANOPbdSSf4z7IhosFYZvNk7vSMoSBEbgtInd1QupsluYl6UccJXJLt4qtuq\n2fhFTr7aEB9lcWq04JQjk6wXOg5CloZMLyYlFmDSVJZcAWxN4neWX4waoV02Ky8B\nhCHjmkWXAgMBAAECggEAKSLsrcO0S69rRdM31aZtLegiKnPTDb6eyxcqBBfpeBVV\nQ5wfVkt4+WYdrJbHfzvUCQ9VBQ+BCg9a7p4BjHrCJ7iAU+RBYwRk8xvTTgfXiiQ9\nAKnbA6ctvbhYYtuoL5X0JltprxKtpLxOK6iqUMW/tlvmyGmub9OdJbTM3qyNcIol\nzQkJxR3CTctXpt/SA3vm1vBXZEmVJQIavIVco7xreN/MJilNXl2c6k0Xw6J8qnV+\nNFPeFqXAhq7AVJ6r70fSCgrQv5+zatRoRPISLXFOYPWvbVTu5VWp2/dx3g2ba/2f\nEC/bCZ+yYGV1dquF6ndwud4ZxyUtoRDfqFce0GwoLQKBgQDy02FlCV6rgHHbBAQA\ngvvv5s2nRrARcs79gltF8Rrulad4rqO9BfV/0OWoW3r1TjY2F9dCCY412RKwbU7c\ns2XeSCWB4xR6XBmV97YXch+FvH/YOjQblfkESECqf2ESVyazOESpyOKEqhdFvyTE\nahMdZeL8ybM3gdyY8KBDgF6wtQKBgQDRlJVLlgO81ofmsQ5LpyzHDnfxKtw+f+eG\ndeCGdnz1LA1eCrf17GCWmLdusJhcLNZgSH6UyYcQcrA0NEkHnx5+F47wSLanbwGp\n8tzEMDXhb7cGbhXhVi9DL3tBSyQ6Zo00m/kmIWy6ErQ5Oy7t8UgJ3xx5KzcEQli/\nSgtY0qUomwKBgHzpkhN4k3Oj2m3xDeH5f4J0d1xSd6YyKhqs4SkEk3ciEwl4xRAq\nrZR3sHw/uuvPtQF0mC4HXlmC9iM9x7CutHt5H5pGZzVehWbpC4naEi8ovZdMsZtz\nNasnQ+SxLA1UObs9+cxhY20dVmVxo4dKjdS0oeSqGYA3VHR0a+ztb0h1AoGBAIn5\nIIRfYVyLe3KjM38YssDlRI8voUlAGSMLLWI4VTFu6+nycoNjN39NUM19UwCzv/op\nH7RCLDnm1xu3JDDxTzjBt6d2p1D5IoZIzZAXERG14y9Hf/4WKA06EBG/Lz2HUATH\nfjHdJWAmeiGHVfDtvHhLOsqGabTTHOvqCihSnMprAoGAKBJvPsIM++JV/e2FrhNJ\n4E4Ru1iuXvRrh0TD8y/PBnM+wcb/N7TEqLnVFZ0tbHzPgrno8+ubM1tM6vIqcdmn\nqtGXb+no8MyaDe5A9XU8hy+kqlhc6R9udkvqqN1K1PTkfi7LPLYRbfn/+XU4Wq61\nh7Sq2PE1oqoojSt2Iqh+NGU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-u7zo5@danapharm-f7cd4.iam.gserviceaccount.com",
+  "client_id": "110063351842428047145",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-u7zo5%40danapharm-f7cd4.iam.gserviceaccount.com"
+}

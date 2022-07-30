@@ -1,0 +1,61 @@
+{% extends 'account/main_template.html' %}
+
+{% block content %}
+
+{%  include 'account/status.html' %}
+
+<br>
+
+<div class="row">
+	<div class="col-md-5">
+		<h5>CUSTOMERS:</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{%  url 'createCustomer'%}">Create Customer</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Customer</th>
+					<th>Orders</th>
+				</tr>
+				{% for user in users %}
+				<tr>
+					<td>{{user.name}}</td>
+					<td>{{user.oredersCount}}</td>
+
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<h5>LAST 5 ORDERS</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="">Create Order</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Product</th>
+					<th>Date Orderd</th>
+					<th>Status</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+				{% for order in orders %}
+				<tr>
+					<td>{{order.name}}</td>
+					<td>{{order.date}}</td>
+					<td>{{order.status}}</td>
+
+
+				</tr>
+				{% endfor %}
+
+		
+			</table>
+		</div>
+	</div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'account/main_template.html' %}
+{%  load static %}
+{% block content %}
+<form action='' method="POST">
+    {% csrf_token %}
+    Name:
+    <input type="text" name="name" id="">
+    Email:
+    <input type="email" name="email" id="">
+    Password:
+    <input type="password" name="pass" id="">
+    <input type="submit" value="signUp" id="">
+
+</form>
+{% endblock %}

@@ -8,6 +8,7 @@ from account import productClient
 from account.IndexClient import IndexClient
 
 from firebase_admin import auth
+from account.decorators import *
 from account.orderClient import OrderClient
 from account.user_client import UserClient
 from account.productClient import ProductClient
@@ -168,24 +169,22 @@ def deleteOrder(request, docId):
 
 
 @csrf_exempt
+@unauthenticatedUser
 def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-    else:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-            user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
-            if user is not None:
-                login(request, user)
-                return redirect('home')
-            else:
-                messages.info(request, 'Check your username or password')
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.info(request, 'Check your username or password')
 
-        context = {}
-        return render(request, 'account/login.html', context)
+    context = {}
+    return render(request, 'account/login.html', context)
 
 
 def logoutU(request):

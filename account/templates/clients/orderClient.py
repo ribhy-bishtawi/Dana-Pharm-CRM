@@ -5,7 +5,7 @@ from account.fire_store import FirebaseClient
 class OrderClient(FirebaseClient):
 
     def __init__(self):
-        FirebaseClient.__init__(self, "orders")
+        FirebaseClient.__init__(self, "AllOrders")
 
     def getItems(self, docId):
         docs = self._collection.document(docId).collection("items").stream()

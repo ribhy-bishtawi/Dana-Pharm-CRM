@@ -1,0 +1,46 @@
+body{
+	background-color: #ebeff5;
+}
+
+table{
+	text-align: center;
+}
+
+#total-orders{
+	background-color: #4cb4c7;
+}
+
+
+#orders-delivered{
+	background-color: #7abecc;
+}
+
+#orders-pending{
+	background-color: #7CD1C0;
+}
+@media screen and  (max-width:495px) {
+	td#res{
+    font-size : 10px;
+
+}
+}
+
+@media screen and (max-width:417px) {
+	td#res{
+    font-size : 8px;
+}
+}
+
+@media screen and (min-width:1012px) {
+	td#res{
+    font-size : initial;
+
+}
+}
+@media only screen and (max-width: 986px) and (min-width: 767px) {
+	td#res{
+    font-size : 8px;
+}
+}
+
+

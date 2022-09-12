@@ -108,11 +108,12 @@ def createCustomer(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         password = request.POST.get('pass')
-        user = auth.create_user(email=email, password=password)
+        location = request.POST.get('location')
+        auth.create_user(email=email, password=password)
 
         data = {'name': name, 'email': email,
-                'password': password, 'oredersCount': '0'}
-        userClient.createWithDocID(data, user.uid)
+                'password': password, 'oredersCount': '0', 'location': location}
+        userClient.createWithDocID(data, email)
         return redirect(request.META.get('HTTP_REFERER'))
 
     context = {}

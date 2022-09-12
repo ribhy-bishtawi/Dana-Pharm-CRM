@@ -21,10 +21,21 @@
                     <label for="exampleInputEmail1">Email address</label>
                     <input autocomplete="off" name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input autocomplete="off" name="pass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                  </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input autocomplete="off" name="pass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Location</label>
+                  <select class="form-control form-control-lg" name="location" onchange='CheckSite(this.value);' required>
+                    <option value="نابلس">نابلس</option>
+                    <option value="جنين">جنين</option>
+                    <option value="الخليل">الخليل</option>
+                   </select>
+                </div>
+
                   <div class="form-check">
                   </div>
                                

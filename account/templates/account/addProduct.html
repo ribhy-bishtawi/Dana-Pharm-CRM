@@ -1,10 +1,10 @@
 {% block content %}
-<form action="{% url 'createCustomer' %}" method="POST">
+<form action="{% url 'addProduct' %}" method="POST">
     {% csrf_token %}
     <div class ='modal-dialog'>
         <div class ='modal-content'>
           <div class="modal-header">
-            <h5 class="modal-title">Add a customer</h5>
+            <h5 class="modal-title">Add a product</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -13,17 +13,17 @@
           <div class="modal-body">
             <div class="form-group{% if field.errors %} invalid{% endif %}">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
-                    <input autocomplete="off" name='name' type="text" class="form-control"  placeholder="Enter name">
+                    <label for="exampleInputEmail1">Medicine name</label>
+                    <input autocomplete="off" name='name' type="text" class="form-control">
                   </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input autocomplete="off" name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <label for="exampleInputEmail1">Description</label>
+                    <input autocomplete="off" name="description" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input autocomplete="off" name="pass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="exampleInputPassword1">Size</label>
+                    <input  autocomplete="off" name="size" type="text" class="form-control" id="exampleInputPassword1" placeholder="افصل بين كل حجم بمساحة فارغة">
                   </div>
                   <div class="form-check">
                   </div>

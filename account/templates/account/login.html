@@ -1,0 +1,97 @@
+{% extends 'account/main_template.html' %}
+{% block title %} Login {% endblock %}
+
+{%  load static %}
+{% block styles %}
+<link rel="stylesheet" href="{%  static 'css/login.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+ 
+  <div class="container">
+<br><br>
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="w-100">
+              <h3 class="mb-4">Sign In</h3>
+            </div>
+            <div class="w-100">
+              <p class="social-media d-flex justify-content-end">
+                <a href="https://www.facebook.com/DanaPharmPS" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+              </p>
+            </div>
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group mt-3">
+      <input type="text" class="form-control" name="username" required />
+      <label class="form-control-placeholder" for="email">Email address</label>
+    </div>
+
+    <div class="form-group">
+      <input type="password" id="password-field" class="form-control" name='password' required/>
+      <label class="form-control-placeholder" for="password">Password</label>
+      <i  id="togglePassword"  class="bi bi-eye-slash field-icon toggle-password"></i>
+    </div>
+    <div class="row mb-4">
+      <div class="col d-flex justify-content-center">
+    </div>
+  
+      <div class="col">
+        <!-- <a href="#!">Forgot password?</a> -->
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+    </div>  
+    <div class="form-group d-md-flex">
+      <div class="w-50 text-left">
+        <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+        <input type="checkbox" checked>
+        <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="w-50 text-md-right">
+        <a href="#">Forgot Password</a>
+      </div>
+    </div>
+{% for message in messages %}
+    <p id="messages">{{message}}</p>
+    {% endfor %}
+  </form>          
+ </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<br><br>
+
+<script>
+  const togglePassword = document
+      .querySelector('#togglePassword');
+
+  const password = document.querySelector('#password-field');
+
+  togglePassword.addEventListener('click', () => {
+
+      // Toggle the type attribute using
+      // getAttribure() method
+      const type = password
+          .getAttribute('type') === 'password' ?
+          'text' : 'password';
+            
+      password.setAttribute('type', type);
+
+      const iconClass = togglePassword
+          .getAttribute('class') === 'bi bi-eye-slash field-icon toggle-password' ?
+          'bi bi-eye-fill field-icon toggle-password' : 'bi bi-eye-slash field-icon toggle-password';
+      // Toggle the eye and bi-eye icon
+      togglePassword.setAttribute('class', iconClass);
+  });
+</script>
+
+{% endblock %}

@@ -1,11 +1,11 @@
 <br>
 
-<div class="row">
+<div class="row" id="resRow">
 	<div class="col">
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="total-orders">
 			  	<div class="card-header">
-			  		<h5 class="card-title">Total Orders</h5>
+			  		<h5 class="card-title">عدد الطلبات</h5>
 			  	</div>
 			  	<div class="card-body">
 			    	<h3 class="card-title">{{totalOrders}}</h3>
@@ -18,10 +18,10 @@
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="orders-delivered">
 			  	<div class="card-header">
-			  		<h5 class="card-title">Orders Delivered</h5>
+			  		<h5 class="card-title">تم التسليم</h5>
 			  	</div>
 			  	<div class="card-body">
-			    	<h3 class="card-title"></h3>
+			    	<h3 class="card-title">{{readyOrdersQ}}</h3>
 			  	</div>
 			</div>
 		</div>
@@ -31,10 +31,10 @@
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="orders-pending">
 			  	<div class="card-header">
-			  		<h5 class="card-title">Orders Pending</h5>
+			  		<h5 class="card-title">في الأنتظار</h5>
 			  	</div>
 			  	<div class="card-body">
-			    	<h3 class="card-title"></h3>
+			    	<h3 class="card-title">{{pendingOrdersQ}}</h3>
 			  	</div>
 			</div>
 		</div>

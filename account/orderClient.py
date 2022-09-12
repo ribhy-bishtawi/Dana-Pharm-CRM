@@ -10,3 +10,8 @@ class OrderClient(FirebaseClient):
     def getItems(self, docId):
         docs = self._collection.document(docId).collection("items").stream()
         return [{**doc.to_dict(), "id": doc.id} for doc in docs]
+
+    def deleteSubCollection(self, docId):
+        docs = self._collection.document(docId).collection("items").stream()
+        for doc in docs:
+            doc.reference.delete()

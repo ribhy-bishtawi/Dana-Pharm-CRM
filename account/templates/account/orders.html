@@ -1,0 +1,97 @@
+{% extends 'account/main_template.html' %}
+{% block title %} Orders {% endblock %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row">
+	<div class="col-md">
+		<class class="card card-body">
+			<div class="table-responsive">
+
+			<table class="table table-bordered table-hover" style="text-align: center;">
+			{% if totalOrders != 0 %}
+				<tr>
+					<th>الأجراءات</th>
+					<th>الحالة</th>
+					<th>تاريخ الطلب</th>
+					<th>السلع</th>
+					<th>العميل</th>
+				</tr>
+				{% for order in pagOrders %}
+				<tr>
+					<td>
+						<button  hx-get="{% url 'updateOrder' order.id %}" hx-target="#dialog"  class ='btn btn-sm btn-info' ><i class="fa fa-pencil"></i></button>						
+						<button  hx-get="{% url 'deleteOrder' order.id %}" hx-target="#dialog"  class ='btn btn-sm btn-danger' ><i class="fa fa-trash"></i></button>						 
+					</td>
+					<td>{{order.status}}</td>
+					<td>{{order.date}}</td>
+					<td>
+						<a class ='btn btn-sm btn-info' href="{% url 'orderDetails' order.id%}">View</a>
+					</td>
+					<td>{{order.name}}</td>
+
+				</tr>
+				{% endfor %}
+			{%else%}
+			<tr>
+				<td>
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						<strong>لا يوجد طلبات حاليا</strong> 
+							<!-- <span aria-hidden="true">&times;</span> -->
+					</div>
+				</td>
+			</tr>
+
+			{% endif %}
+			</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br/></br/>
+<nav style="display: flex;justify-content: right;" aria-label="Page navigation example">
+    <ul class="pagination">
+
+  
+{% if pagOrders.has_previous %}
+<li class="page-item"> <a class="page-link"  href="?page=1">&raquo الأولى</a></li>
+<li class="page-item"><a class="page-link"  href="?page={{ pagOrders.previous_page_number }}">السابق</a></li>
+{% endif %}
+
+{% for i in pageNum%}
+<li class="page-item"><a class="page-link"  href="?page={{ forloop.counter }}">{{forloop.counter}}</a></li>
+{% endfor %}
+
+
+{% if pagOrders.has_next %}
+<li class="page-item"><a class="page-link"  href="?page={{ pagOrders.next_page_number }}">  التالي</a></li>
+<li class="page-item"><a class="page-link"  href="?page={{ pagOrders.paginator.num_pages }}">  &laquo الأخيرة</a></li>
+{% endif %}
+</ul>
+</nav>
+
+<div class ='modal fade'  id="modal">
+
+	<div id="dialog" class="modal-dialog" hx-target="this"></div>
+</div>
+
+{% block scripts %}
+    {{ block.super }}
+	<script>
+		const modal = new bootstrap.Modal(document.getElementById("modal"))
+	
+		htmx.on("htmx:afterSwap", (e) => {
+		// Response targeting #dialog => show the modal
+		if (e.detail.target.id == "dialog") {
+			modal.show()
+		}
+		})
+	</script>
+	{% endblock %}
+
+
+
+{% endblock %}

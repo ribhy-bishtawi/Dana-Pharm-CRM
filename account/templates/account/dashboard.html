@@ -1,61 +1,105 @@
 {% extends 'account/main_template.html' %}
-
+{% block title %} Home {% endblock %}
 {% block content %}
-
+{%  load static %}
 {%  include 'account/status.html' %}
+
 
 <br>
 
 <div class="row">
 	<div class="col-md-5">
-		<h5>CUSTOMERS:</h5>
+		<h5 style="text-align: right;"> : العملاء</h5>
 		<hr>
 		<div class="card card-body">
-			<a class="btn btn-primary  btn-sm btn-block" href="{%  url 'createCustomer'%}">Create Customer</a>
-			<table class="table table-sm">
+			<a class="btn btn-primary  btn-sm btn-block" href="{%  url 'customers'%}">عرض العملاء</a>
+			<div class="table-responsive">
+			<table class="table table-bordered table-hover" style="text-align: center;">
 				<tr>
-					<th>Customer</th>
-					<th>Orders</th>
+					<th></th>
+					<th>العميل</th>
+					<th>الطلبات</th>
 				</tr>
-				{% for user in users %}
+				{% for customer in customers %}
 				<tr>
-					<td>{{user.name}}</td>
-					<td>{{user.oredersCount}}</td>
+					<td><a class ='btn btn-sm btn-info' href="{% url 'customerOrders' customer.id%}">عرض</a></td>
+					<td>{{customer.name}}</td>
+					<td>{{customer.oredersCount}}</td>
 
 				</tr>
 				{% endfor %}
 			</table>
+			</div>
 		</div>
 	</div>
-
-	<div class="col-md-7">
-		<h5>LAST 5 ORDERS</h5>
+	<hr>	
+	<div class="col-md-6">
+		<h5 style="text-align: right;">: أخر ٤ طلبات</h5>
 		<hr>
 		<div class="card card-body">
-			<a class="btn btn-primary  btn-sm btn-block" href="">Create Order</a>
-			<table class="table table-sm">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'orders'%}">عرض الطلبات</a>
+			<div class="table-responsive">
+
+			<table class="table table-bordered table-hover" style="text-align: center;" >
+				{% if totalOrders != 0  %}
+					<tr>
+						<th></th>
+						<th>الزبون</th>
+						<th>تاريخ الطلب</th>
+						<th>الحالة</th>
+						<th>الأجراءات</th>
+					</tr>
+					{% for order in orders %}
+					<tr>
+						<td><a class ='btn btn-sm btn-info' href="{% url 'orderDetails' order.id%}">عرض</a></td>
+						<td>{{order.name}}</td>
+						<td id="res">{{order.date}}</td>
+						<td>{{order.status}}</td>
+						<td>
+							<button  hx-get="{% url 'updateOrder' order.id %}" hx-target="#dialog"  class ='btn btn-sm btn-info' ><i class="fa fa-pencil"></i></button>						
+							<button  hx-get="{% url 'deleteOrder' order.id %}" hx-target="#dialog"  class ='btn btn-sm btn-danger' ><i class="fa fa-trash"></i></button>						 
+						</td>
+					</tr>
+					{% endfor %}
+				{% else %}
 				<tr>
-					<th>Product</th>
-					<th>Date Orderd</th>
-					<th>Status</th>
-					<th>Update</th>
-					<th>Remove</th>
+					<td>
+						<div class="alert alert-warning alert-dismissible fade show" role="alert">
+							<strong>لا يوجد طلبات حاليا</strong> 
+								<!-- <span aria-hidden="true">&times;</span> -->
+						</div>
+					</td>
 				</tr>
-
-				{% for order in orders %}
-				<tr>
-					<td>{{order.name}}</td>
-					<td>{{order.date}}</td>
-					<td>{{order.status}}</td>
-
-
-				</tr>
-				{% endfor %}
+				{% endif %}
 
 		
 			</table>
+			</div>
 		</div>
 	</div>
 
 </div>
+	<div class ='modal fade'  id="modal">
+
+		<div id="dialog" class="modal-dialog" hx-target="this"></div>
+	</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://unpkg.com/htmx.org@1.8.0" integrity="sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc" crossorigin="anonymous"></script>
+
+  <script>
+	const modal = new bootstrap.Modal(document.getElementById("modal"))
+
+	htmx.on("htmx:afterSwap", (e) => {
+	// Response targeting #dialog => show the modal
+	if (e.detail.target.id == "dialog") {
+		modal.show()
+	}
+	})
+
+  </script>
+		
 {% endblock %}

@@ -16,7 +16,7 @@ class FirebaseClient:
         except ValueError:
             firebase_admin.initialize_app(
                 credentials.Certificate(
-                    '/Users/ribhibish/Desktop/Django/dana/crm/account/serviceKey.json')
+                    'account/serviceKey.json')
             )
         self._db = firestore.client()
         self._collection = self._db.collection(collictionName)
@@ -52,6 +52,13 @@ class FirebaseClient:
     def filter(self, field, condition, value):
         """Filter todo using conditions on firestore database"""
         docs = self._collection.where(field, condition, value).stream()
+
+        return [{**doc.to_dict(), "id": doc.id} for doc in docs]
+
+    def orderBy(self, field, limit):
+        """Filter todo using conditions on firestore database"""
+        docs = self._collection.order_by(
+            field, direction=firestore.Query.DESCENDING).limit(limit).stream()
         return [{**doc.to_dict(), "id": doc.id} for doc in docs]
 
     def createWithDocID(self, data, id):

@@ -1,18 +1,73 @@
 {%  load static %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <img src="{% static 'images/DanaLogo.png' %}" alt=""style="width: 5 npm install firebasevw; min-width: 3px;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+ <style>
+.navbar .navbar-nav .nav-link {
+    color: #000000;
+    font-size: 1.1em;
+}
+.navbar .navbar-nav .nav-link:hover{
+    color: #808080;
+}
+@media only screen and (min-width: 992px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .navbar .navbar-nav {
+    border-bottom: 2px solid #000;
+  }
+  .navbar .nav-item {
+    padding: 0.5em 1em;
+  }
+}
+.navbar .navbar-nav {
+  margin-top: 0.5em;
+  border-top: 2px solid #000;
+}
+</style>
+{% if user.is_authenticated %}
+<nav class="navbar navbar-expand-lg navbar-light"  style="background-color: #ebeff5;">
+    <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static 'images/DanaLogo2.png' %}" alt=""style='max-width: 150px;'>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbarToggler13"
+        aria-controls="myNavbarToggler13" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">لوحة التحكم</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">الأصناف</a>
-        </li>
-      </ul>
+    <div class="collapse navbar-collapse" id="myNavbarToggler13">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home'%}">الرئيسية</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'orders'%}">الطلبات</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'customers'%}">العملاء</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'products'%}">المنتجات</a>
+            </li>
+            <li class="d-flex justify-content-between pt-2">
+              <a href="{% url 'logout' %}" class="btn btn-info btn-lg">
+                <span class="fa fa-sign-out"></span> تسجيل الخروج
+              </a>
+            </li>
+          
+        </ul>
     </div>
-  </nav>
+</nav>
+
+{% else %}
+<nav class="navbar navbar-expand-lg navbar-light"  style="background-color: #ebeff5;">
+  <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static 'images/DanaLogo2.png' %}" alt=""style='max-width: 150px;'>
+  </a>
+  <ul></ul>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbarToggler13"
+      aria-controls="myNavbarToggler13" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+      </ul>
+  </div>
+</nav>
+{% endif %}

@@ -1,0 +1,34 @@
+{% block content %}
+<form method="POST" action="{% url 'updateOrder' order.id %}" >
+  {% csrf_token %}
+  <div class ='modal-dialog'>
+    <div class ='modal-content'>
+      <div class="modal-header">
+        <h5 class="modal-title">Update status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group{% if field.errors %} invalid{% endif %}">
+          <select class="form-control form-control-lg" name="stat">
+            {% if order.status == 'في الأنتظار' %}
+              <option selected>في الأنتظار</option>
+              <option>تم التوصيل</option>
+            {% else %}
+              <option selected>تم التوصيل</option>
+              <option> في الأنتظار </option>
+            {% endif %}
+            </select>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" onclick="this.disabled=true,this.form.submit()">Update</button>
+      </div>
+  </div>
+</form>
+
+{% endblock %}

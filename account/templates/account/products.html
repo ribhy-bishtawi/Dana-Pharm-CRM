@@ -1,4 +1,5 @@
 {% extends 'account/main_template.html' %}
+{% block title %} Products {% endblock %}
 
 {% block content %}
 
@@ -7,30 +8,85 @@
 <div class="row">
     <div class="col-md">
         <div class="card card-body">
-            <h5>الأصناف</h5>
+            <div id="main">
+                <h5 style="text-align: right;">الأصناف</h5>
+                <button style="margin-bottom: 10px;"  hx-get="{% url 'addProduct' %}" hx-target="#dialog"  class="btn btn-sm btn-info"><i class="fa fa-plus"></i> Add a product</button>						
+
+            </div>
+            <form method="POST">
+                {% csrf_token %}                    
+                <div style="display: flex;justify-content: right;" class="input-group">
+                  <button   id="search-button" type="submit" class="form-control btn btn-sm btn-info">
+                  <i  class="fa fa-search"></i>
+                  </button>
+                    <div style = ' width: 95%;' class="form-outline">
+                      <input  autocomplete="off" id="search-input" type="search" name="searchQuery" class="form-control" style="width: 100%;text-align: right;" required/>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="card card-body">
-            <table class="table">
+            <div class="table-responsive">
+
+            <table class="table table-bordered table-hover" style="text-align: center;">
                 <tr>
+                    <th>Active ingredient</th>
                     <th>Product</th>
-                    <th></th>
-                    <th>Price</th>
                 </tr>
                 {% for i in products %}
                     <tr>
-                        <td>{{i.name}}</td>
                         <td>{{i.description}}</td>
-                        <td>
-                            {%  for s in i.size %}
-                            {{s}}
-                            {% endfor %}
-                        </td>
+                        <td>{{i.name}}</td>
                     </tr>
                 {%  endfor %}
             </table>
+            </div>
         </div>
     </div>
     
 </div>
+<nav style="display: flex;justify-content: right;" aria-label="Page navigation example">
+    <ul class="pagination">
+
+  
+{% if pagProducts.has_previous %}
+<li class="page-item"> <a class="page-link"  href="?page=1">&raquo الأولى</a></li>
+<li class="page-item"><a class="page-link"  href="?page={{ pagProducts.previous_page_number }}">السابق</a></li>
+{% endif %}
+
+{% for i in pageNum%}
+<li class="page-item"><a class="page-link"  href="?page={{ forloop.counter }}">{{forloop.counter}}</a></li>
+{% endfor %}
+
+
+{% if pagProducts.has_next %}
+<li class="page-item"><a class="page-link"  href="?page={{ pagProducts.next_page_number }}">  التالي</a></li>
+<li class="page-item"><a class="page-link"  href="?page={{ pagProducts.paginator.num_pages }}">  &laquo الأخيرة</a></li>
+{% endif %}
+</ul>
+</nav>
+
+<div class ='modal fade'  id="modal">
+
+    <div id="dialog" class="modal-dialog" hx-target="this"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://unpkg.com/htmx.org@1.8.0" integrity="sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc" crossorigin="anonymous"></script>
+
+  <script>
+	const modal = new bootstrap.Modal(document.getElementById("modal"))
+
+	htmx.on("htmx:afterSwap", (e) => {
+	// Response targeting #dialog => show the modal
+	if (e.detail.target.id == "dialog") {
+		modal.show()
+	}
+	})
+
+  </script>
 
 {% endblock %}

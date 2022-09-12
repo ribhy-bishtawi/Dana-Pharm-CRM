@@ -1,0 +1,38 @@
+{% extends 'account/main_template.html' %}
+{% block title %} Details {% endblock %}
+
+{% block content %}
+
+		<br>
+
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>Order details</h5>
+				</div>
+				<div class="card card-body">
+					<div class="table-responsive">
+
+					<table class="table">
+						<tr>
+							<th>Product</th>
+							<th>Quantity</th>
+							<th>Size</th>
+						</tr>
+
+                        {% for order in orders%}
+                        <tr>
+                            <td>{{order.Med_name}}</td>
+                            <td>{{order.Quantity }}</td>
+                            <td>{{order.Size}}</td>
+                        </tr>
+                        {% endfor %}
+						
+					</table>
+				</div>
+				</div>
+			</div>
+			
+		</div>
+
+{% endblock content %}

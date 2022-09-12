@@ -2,16 +2,20 @@ import datetime
 from http import client
 import imp
 from multiprocessing import context
+import re
 from unittest import result
 from django.shortcuts import redirect, render
-from account import productClient
-from account.IndexClient import IndexClient
+from account.templates.clients import productClient
+from account.templates.clients.IndexClient import IndexClient
 
 from firebase_admin import auth
 from account.decorators import *
-from account.orderClient import OrderClient
-from account.user_client import UserClient
-from account.productClient import ProductClient
+from account.templates.clients.orderClient import OrderClient
+from account.templates.clients.user_client import UserClient
+from account.templates.clients.productClient import ProductClient
+from account.templates.clients.NablusOrdersClients import NablusClient
+from account.templates.clients.JeninsOrdersClient import JeninClient
+from account.templates.clients.HebronsOrdersClient import HebronClient
 
 from django.contrib import messages
 
@@ -22,12 +26,28 @@ from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
 
 
+def getClientName(request):
+    group = request.user.groups.all()[0].name
+    if (group == 'نابلس'):
+        orderClient = NablusClient()
+        return orderClient
+    elif(group == 'الخليل'):
+        orderClient = HebronClient()
+        return orderClient
+    elif(group == 'جنين'):
+        orderClient = JeninClient()
+        return orderClient
+    else:
+        orderClient = OrderClient()
+        return orderClient
+
+
 @login_required(login_url='loginPage')
 def home(request):
     userClient = UserClient()
     orderdUsers = userClient.orderBy('name', 5)
 
-    orderClient = OrderClient()
+    orderClient = getClientName(request)
     orders = orderClient.all()
     orderdOrders = orderClient.orderBy('date', 4)
     totalOrders = len(orders)
@@ -67,7 +87,7 @@ def customersOrders(request, docId):
     userClient = UserClient()
     user = userClient.get_by_id(id=docId)
 
-    orderClient = OrderClient()
+    orderClient = getClientName(request)
     usersOrders = orderClient.filter('user_id', '==', docId.strip())
     userOrdersLen = len(usersOrders)
 
@@ -78,7 +98,7 @@ def customersOrders(request, docId):
 
 @login_required(login_url='loginPage')
 def orderDetails(request, docId):
-    orderClient = OrderClient()
+    orderClient = getClientName(request)
     usersOrdersDetail = orderClient.getItems(docId)
 
     context = {'orders': usersOrdersDetail}
@@ -140,7 +160,7 @@ def addProduct(request):
 
 
 def updateOrder(request, docId):
-    orderClient = OrderClient()
+    orderClient = getClientName(request)
     order = orderClient.get_by_id(docId)
     if(request.method == 'POST'):
         stat = request.POST.get('stat')
@@ -152,7 +172,7 @@ def updateOrder(request, docId):
 
 
 def deleteOrder(request, docId):
-    orderClient = OrderClient()
+    orderClient = getClientName(request)
     order = orderClient.get_by_id(docId)
     userClient = UserClient()
     userData = userClient.get_by_id(order['user_id'])
@@ -194,7 +214,7 @@ def logoutU(request):
 
 @login_required(login_url='loginPage')
 def orders(request):
-    orderClient = OrderClient()
+    orderClient = getClientName(request)
     orders = orderClient.all()
     totalOrders = len(orders)
     p = Paginator(orders, 10)

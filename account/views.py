@@ -1,12 +1,5 @@
 import datetime
-from http import client
-import imp
-from multiprocessing import context
-import re
-from unittest import result
 from django.shortcuts import redirect, render
-from account.templates.clients import productClient
-from account.templates.clients.IndexClient import IndexClient
 
 from firebase_admin import auth
 from account.decorators import *

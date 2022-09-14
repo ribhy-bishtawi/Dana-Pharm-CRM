@@ -84,7 +84,7 @@ def customersOrders(request, docId):
     user = userClient.get_by_id(id=docId)
 
     orderClient = getClientName(request)
-    usersOrders = orderClient.filter('user_id', '==', docId.strip())
+    usersOrders = orderClient.filter('user_email', '==', docId.strip())
     userOrdersLen = len(usersOrders)
 
     context = {'user': user, 'orders': usersOrders,

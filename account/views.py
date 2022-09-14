@@ -43,6 +43,7 @@ def getClientName(request):
 
 
 @login_required(login_url='loginPage')
+@allowedUsers
 def home(request):
     userClient = UserClient()
     orderdUsers = userClient.orderBy('name', 5)
@@ -64,6 +65,7 @@ def home(request):
 
 
 @login_required(login_url='loginPage')
+@allowedUsers
 def products(request):
     productClient = ProductClient()
     products = productClient.all()
@@ -83,6 +85,7 @@ def products(request):
 
 
 @login_required(login_url='loginPage')
+@allowedUsers
 def customersOrders(request, docId):
     userClient = UserClient()
     user = userClient.get_by_id(id=docId)
@@ -106,6 +109,7 @@ def orderDetails(request, docId):
 
 
 @login_required(login_url='loginPage')
+@allowedUsers
 def customers(request):
     userClient = UserClient()
     users = userClient.all()
@@ -123,6 +127,7 @@ def customers(request):
 
 
 @login_required(login_url='loginPage')
+@allowedUsers
 def createCustomer(request):
     if(request.method == 'POST'):
         userClient = UserClient()
@@ -143,6 +148,7 @@ def createCustomer(request):
 
 @login_required(login_url='loginPage')
 @csrf_exempt
+@allowedUsers
 def addProduct(request):
     if(request.method == 'POST'):
         productClient = ProductClient()
@@ -159,6 +165,7 @@ def addProduct(request):
     return render(request, 'account/addProduct.html', context)
 
 
+@login_required(login_url='loginPage')
 def updateOrder(request, docId):
     orderClient = getClientName(request)
     order = orderClient.get_by_id(docId)
@@ -171,11 +178,12 @@ def updateOrder(request, docId):
     return render(request, 'account/updateOrder.html', context)
 
 
+@login_required(login_url='loginPage')
 def deleteOrder(request, docId):
     orderClient = getClientName(request)
     order = orderClient.get_by_id(docId)
     userClient = UserClient()
-    userData = userClient.get_by_id(order['user_id'])
+    userData = userClient.get_by_id(order['user_email'])
     userOrdersCount = int(userData['oredersCount'])
     if(request.method == 'POST'):
         orderClient.delete_by_id(docId)

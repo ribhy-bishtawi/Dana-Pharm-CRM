@@ -75,7 +75,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
-    'django_filters'
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +103,11 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
+            'libraries':{
+                'my_templatetag': 'crm.templatetags.filter',
+
+            }
         },
     },
 ]

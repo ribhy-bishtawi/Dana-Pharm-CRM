@@ -26,7 +26,7 @@
 						<button  hx-get="{% url 'deleteOrder' order.id %}" hx-target="#dialog"  class ='btn btn-sm btn-danger' ><i class="fa fa-trash"></i></button>						 
 					</td>
 					<td>{{order.status}}</td>
-					<td>{{order.date}}</td>
+					<td id="res">{{order.date}}</td>
 					<td>
 						<a class ='btn btn-sm btn-info' href="{% url 'orderDetails' order.id%}">View</a>
 					</td>

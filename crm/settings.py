@@ -63,7 +63,7 @@ SECRET_KEY = 'django-insecure-9ulp8a=j7q_0)io+*9e6h4g0gf-$x21lv$wlg@=6c(#__lo_3k
 DEBUG = False
 
 ALLOWED_HOSTS = ['dana-pharm.herokuapp.com',
-                 '127.0.0.1', '.vercel.app', '.now.sh']
+                 '127.0.0.1', '*.vercel.app', '.now.sh']
 
 
 # Application definition

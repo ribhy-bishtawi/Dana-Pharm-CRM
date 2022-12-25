@@ -3,7 +3,7 @@
     "version": 2,
     "builds": [
     {
-    "src": "templatetags/wsgi.py",
+    "src": "crm/wsgi.py",
     "use": "@vercel/python",
     "config": { "maxLambdaSize": "15mb", "runtime": "python-3.9" }
     },
@@ -22,7 +22,7 @@
     },
     {
     "src": "/(.*)",
-    "dest": "templatetags/wsgi.py"
+    "dest": "crm/wsgi.py"
     }
     ]
     }

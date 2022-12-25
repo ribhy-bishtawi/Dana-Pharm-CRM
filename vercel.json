@@ -5,7 +5,7 @@
     {
     "src": "crm/wsgi.py",
     "use": "@vercel/python",
-    "config": { "maxLambdaSize": "15mb", "runtime": "python-3.9" }
+    "config": { "maxLambdaSize": "15mb", "runtime": "python-3.8.9" }
     },
     {
     "src": "build_files.sh",

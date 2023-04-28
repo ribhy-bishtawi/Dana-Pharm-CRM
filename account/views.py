@@ -20,7 +20,10 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 def getClientName(request):
-    group = request.user.groups.all()[0].name
+    group = ""
+    if(len(request.user.groups.all()) != 0):
+        group = request.user.groups.all()[0].name
+
     if (group == 'نابلس'):
         orderClient = NablusClient()
         return orderClient

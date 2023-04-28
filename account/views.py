@@ -186,7 +186,8 @@ def deleteOrder(request, docId):
         orderClient.deleteSubCollection(docId)
         userOrdersCount -= 1
         data = {'oredersCount': f'{userOrdersCount}'}
-        userClient.update(order['user_id'], data)
+        print(order)
+        userClient.update(order['user_email'], data)
         return redirect(request.META.get('HTTP_REFERER'))
     context = {'order': order}
     return render(request, 'account/deleteOrder.html', context)

@@ -201,7 +201,7 @@ def loginPage(request):
         password = request.POST.get('password')
 
         user = authenticate(request, username=username.lower(),
-                            password=password.lower())
+                            password=password)
 
         if user is not None:
             login(request, user)

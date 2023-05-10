@@ -1,51 +1,53 @@
 {% block content %}
 <form action="{% url 'createCustomer' %}" method="POST">
-    {% csrf_token %}
-    <div class ='modal-dialog'>
-        <div class ='modal-content'>
-          <div class="modal-header">
-            <h5 class="modal-title">Add a customer</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
+  {% csrf_token %}
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class="modal-header">
+        <h5 class="modal-title">Add a customer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group{% if field.errors %} invalid{% endif %}">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input autocomplete="off" name='name' type="text" class="form-control" placeholder="Enter name">
           </div>
-    
-          <div class="modal-body">
-            <div class="form-group{% if field.errors %} invalid{% endif %}">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
-                    <input autocomplete="off" name='name' type="text" class="form-control"  placeholder="Enter name">
-                  </div>
 
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input autocomplete="off" name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                  </div>
-
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input autocomplete="off" name="pass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Location</label>
-                  <select class="form-control form-control-lg" name="location" onchange='CheckSite(this.value);' required>
-                    <option value="نابلس">نابلس</option>
-                    <option value="جنين">جنين</option>
-                    <option value="الخليل">الخليل</option>
-                   </select>
-                </div>
-
-                  <div class="form-check">
-                  </div>
-                               
-            </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address*</label>
+            <input autocomplete="off" name="email" type="email" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp" placeholder="Enter email" required>
           </div>
-    
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-sm btn-info">Submit</button>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password*</label>
+            <input autocomplete="off" name="pass" type="password" class="form-control" id="exampleInputPassword1"
+              placeholder="Password" required>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Location</label>
+            <select class="form-control form-control-lg" name="location" onchange='CheckSite(this.value);' required>
+              <option value="نابلس">نابلس</option>
+              <option value="جنين">جنين</option>
+              <option value="الخليل">الخليل</option>
+            </select>
+          </div>
+
+          <div class="form-check">
+          </div>
+
         </div>
       </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-sm btn-info">Submit</button>
+      </div>
+    </div>
 
 </form>
 
